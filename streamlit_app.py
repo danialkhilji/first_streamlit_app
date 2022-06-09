@@ -3,7 +3,13 @@ import pandas
 import requests
 
 # New section to display fruitvice api response
-streamlit.header('Fruityvice Fruit Advice!')
+streamlit.header('Fruityvice Fruit Advice!') # just writes data to the screen
+
+# take the json version of the response and normalize it
+fruityvice_normalized = pandas.json_normalized(fruityvice_response.json())
+
+# output the screen as table
+streamlit.dataframe(fruityvice_normalized)
 
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 streamlit.text(fruityvice_response.json())
